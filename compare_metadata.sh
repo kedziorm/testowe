@@ -1,3 +1,7 @@
+# Created by kedziorm
+#script to ensure that metadata in BEC soil moisture data are exactly the same in all files
+# (Slope=1 and Intercept=0)
+
 for d in */*1deg; do
 
 	echo "$d"
