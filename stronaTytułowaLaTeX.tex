@@ -1,0 +1,312 @@
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%          Rozprawa doktorska
+%%%%%%%%%%%%%%%%
+
+\documentclass[oneside,12pt]{mwbk}
+%\documentclass[oneside,12pt]{mwbk}
+
+%%%%%%%% Packages
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+%\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}% nieszczęśni użytkownicy Windows powinni
+                           % zmienić utf8 na cp1250
+\usepackage[nobysame,initials]{amsrefs}
+\usepackage{enumitem}
+\usepackage{setspace}
+
+\usepackage{graphicx}
+\graphicspath{ {grafika/} }
+
+% According to: http://tex.stackexchange.com/questions/83440/inputenc-error-unicode-char-u8-not-set-up-for-use-with-latex
+% to define non-breaking space (and omit error message)
+\DeclareUnicodeCharacter{00A0}{~}
+%
+
+%%%%%%%% Math symbols
+%%%%%% Sets
+\newcommand{\Rset}{{\mathbb{R}}}
+\newcommand{\Rtwo}{\Rset^2}
+\newcommand{\Rtwomax}{{\pair{\Rset^2,\norm\cdot_\infty}}}
+\newcommand{\Rthreemax}{{\pair{\Rset^3,\norm\cdot_\infty}}}
+\newcommand{\Rplus}{\interval[0,+\infty)}
+\newcommand{\extRplus}{\interval[0,+\infty]}
+%\newcommand{\extRplus}{{\overline{\Rset}_+}}
+\newcommand{\Nset}{{\mathbb{N}}}
+\newcommand{\Nzero}{{\Nset\join\set0}}
+% \newcommand{\famF}{{\mathcal{F}}}
+% \newcommand{\famT}{{\mathcal{T}}}
+\newcommand{\famS}{\Sigma}
+% \newcommand{\eX}{{\eps X}}
+% \newcommand{\eeX}{{\eps\eps X}}
+% \newcommand{\eK}{{\eps K}}
+\newcommand{\spaceC}{\mathcal{C}}
+\newcommand{\famA}{\mathcal{A}}
+\newcommand{\interval}{}% void definition;)
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\bigset}[1]{\bigl\{#1\bigr\}}
+\newcommand{\Bigset}[1]{\Bigl\{#1\Bigr\}}
+\newcommand{\dset}[2]{\set{#1:#2}}
+\newcommand{\iset}[2]{\set{#1}_{#2}}
+\newcommand{\oset}[2]{\langle #1\rangle_{#2}}% ordered set
+\newcommand{\bigdset}[2]{\bigset{#1:#2}}
+\newcommand{\Bigdset}[2]{\Bigset{#1:#2}}
+\newcommand{\bigiset}[2]{\bigset{#1}_{#2}}
+\newcommand{\bigoset}[2]{\bigl\langle #1\bigr\rangle_{#2}}% ordered set
+\newcommand{\limA}{{A_\infty}}
+\newcommand{\limK}{{K_\infty}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\uc}{\calU_c}
+\newcommand{\uck}{\uc^\kappa}
+%%%%%% Functions
+\newcommand{\norm}[1]{\protect\lVert#1\protect\rVert}
+\newcommand{\bignorm}[1]{\bigl\|#1\bigr\|}
+\newcommand{\abs}[1]{\mathopen|#1\mathclose|}
+\newcommand{\bigabs}[1]{\bigl|#1\bigr|}
+\newcommand{\Bigabs}[1]{\Bigl|#1\Bigr|}
+\newcommand{\biggabs}[1]{\biggl|#1\biggr|}
+\newcommand{\supdset}[2]{\sup\dset{#1}{#2}}
+\newcommand{\infdset}[2]{\inf\dset{#1}{#2}}
+\newcommand{\seqlim}[1][n]{\lim_{#1\to\infty}}
+\DeclareMathOperator{\diam}{diam}
+% \DeclareMathOperator{\cov}{cov}
+% \DeclareMathOperator{\re}{Re}
+% \DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\conv}{conv}
+\newcommand{\clconv}[1]{\closure{\conv{#1}}}
+\DeclareMathOperator{\adm}{adm}
+\DeclareMathOperator{\Hconv}{Hconv}
+\DeclareMathOperator{\esssup}{ess\,sup}
+\DeclareMathOperator{\card}{card}
+% \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Fix}{Fix}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\boundary}[1]{\partial #1}
+\newcommand{\join}{\cup}
+\newcommand{\meet}{\cap}
+\renewcommand{\Join}{\bigcup}
+\newcommand{\Meet}{\bigcap}
+\newcommand{\superpos}{\circ}
+\newcommand{\ti}{\times}
+% \DeclareMathOperator{\adm}{\mathcal{A}}
+% \DeclareMathOperator{\Hc}{\mathcal{H}}
+\newcommand{\projection}{P}
+\newcommand{\pc}[1][C]{\projection_{#1}}
+% \newcommand{\powerset}[1][X]{{\mathcal{P}(#1)}}
+\newcommand{\powerset}[1][X]{{2^{#1}}}
+\newcommand{\nepowerset}[1][X]{{\powerset[#1]\setminus\set\emptyset}}% nonempty
+\newcommand{\bounded}[1][X]{{\mathcal{B}(#1)}}
+\newcommand{\compact}[1][X]{{\mathcal{K}(#1)}}
+\DeclareMathOperator{\dist}{dist}
+\newcommand{\segment}[2]{[#1,#2]}
+\newcommand{\ray}[2]{[#1,#2\protect\rangle}
+\newcommand{\raypc}[1]{\ray{\pc(#1)}{#1}}
+\newcommand{\hyq}[1][q]{h_{y,#1}}
+\newcommand{\uq}[1][q]{u_{#1}}
+\newcommand{\inv}{^{-1}}
+% \newcommand{\mseg}[3][d]{[#2,#3]_{#1}}
+\def\gmseg[#1,#2]#3{[#1,#2]_{#3}}% general metric segment
+\def\mseg[#1,#2]{\gmseg[#1,#2]d}
+\newcommand{\restricted}[1]{|_{#1}}
+\newcommand{\exth}{{\widetilde h}}
+%%%%%% Relations
+\let\subset=\subseteq
+\let\nsubset=\nsubseteq
+\let\subsetne=\varsubsetneq
+%\let\supset=\supseteq
+\let\preceq=\preccurlyeq
+\newcommand{\eqdef}{\mathrel{\mathop:}=} % równe z definicji
+\newcommand{\qedef}{=\mathrel{\mathop:}} % równe z definicji
+%%%%%% Accented letters
+\newcommand{\extf}{{\tilde{f}}}
+% \newcommand{\exti}{{\tilde{\imath}}}
+% \newcommand{\extT}{{\widetilde{T}}}
+% \newcommand{\extHomeo}{\widetilde{H}}% homeomorfizm
+% \newcommand{\maxA}{{\mathchoice
+%   {{\widetilde{A}}}
+%   {{\widetilde{A}}}
+%   {{\tilde{A}}}
+%   {{\tilde{A}}}}}
+% \newcommand{\maxY}{{\widetilde{Y}}}% tylko w Hahn--Banach Theorem --
+%                                 % bez ind.
+% \newcommand{\minH}{{\widetilde{H}}}% nie potrzeba głębokich indeksów!
+% \let\minA=\maxA % ekstremalny, obojętnie -- min czy max
+% \newcommand{\extr}{{\tilde{r}}}
+% \newcommand{\hatf}{{\hat{f}}}
+% \newcommand{\hatT}{{\hat{T}}}
+% \newcommand{\hatA}{{\hat{A}}}
+% \newcommand{\barB}{{\bar{B}}}
+\newcommand{\intX}{{\widetilde{X}}}
+% \newcommand{\complA}{{\widetilde{A}}}
+\newcommand{\ball}{{\overline{B}}}
+%%%%%% Greek and calligraphic letters
+\newcommand{\eps}{\varepsilon}
+\newcommand{\de}{\delta}
+% \newcommand{\z}{\zeta}
+% \newcommand{\ga}{\gamma}
+% \newcommand{\Ga}{\Gamma}
+\newcommand{\la}{\lambda}
+\newcommand{\La}{\Lambda}
+\newcommand{\Om}{\Omega}
+\newcommand{\clOm}{{\closure\Om}}
+\newcommand{\bOm}{{\boundary\Om}}
+\newcommand{\I}{[0,1]}
+%%%%%% Other
+\newcommand{\limb}{{b_\infty}}
+\newcommand{\limx}{{x_\infty}}
+\newcommand{\limy}{{y_\infty}}
+\newcommand{\map}[2]{\colon #1\to #2}
+% \newcommand{\XtoRplus}[1][X]{\colon #1\to\Rplus}
+\newcommand{\selfmap}[1]{\map{#1}{#1}}
+\newcommand{\seq}[2][n=1]{\langle #2\rangle_{#1}^\infty}
+\newcommand{\bigseq}[2][n=1]{\bigl\langle #2\bigr\rangle_{#1}^\infty}
+\newcommand{\ordset}[1]{\protect\langle #1\protect\rangle}
+\newcommand{\pair}[1]{\ordset{#1}}
+\newcommand{\tuple}[1]{\ordset{#1}}
+\newcommand{\Rhfragile}{$\mathbb{R}$\nobreakdash}% do R-drzew
+\newcommand{\Rh}{\protect\Rhfragile}
+% \newcommand{\spe}{\suppos e}% superpozycja z $e$
+\newcommand{\iI}{{i\in I}}
+\newcommand{\lL}{{\la\in\La}}
+% \newcommand{\gG}{{\ga\in\Ga}}
+\newcommand{\nN}[1][n]{{#1\in\Nset}}
+% \newcommand{\li}{{\la,i}}
+% \newcommand{\ipj}{i\preceq j}
+\newcommand{\nempty}{\ne\emptyset}
+% \newcommand{\intab}{\int_a^b}
+% \newcommand{\F}[1]{F\bigl(#1\bigr)}
+% \newcommand{\Kf}[1]{K(t,s)f\bigl(#1\bigr)}
+% \newcommand{\astb}{a\le s\le t\le b}
+% \newcommand{\intat}{\int_a^t}
+
+%%%%%%%% Other definitions and declarations
+\onehalfspacing
+\allowdisplaybreaks[3]
+\hyphenation{Hahna Zor-na}
+\let\tu=\textup
+\setenumerate[1]{label=\tu{\arabic*.},nolistsep}
+\newenvironment{UWAGA}{
+  \begin{quotation}\noindent\bfseries\textit{Uwaga!}}
+  {\end{quotation}}
+\let\defd=\emph % definiendum
+
+\newcommand{\polishendash}{\unskip\discretionary{--}{--}{--}\nolinebreak}% do
+                                % Kuratowskiego \polishendash Zorna itp.
+\newcommand{\nquad}{\hskip -1em\relax}
+\newcommand{\nqquad}{\hskip -2em\relax}
+\let\articleit=\emph
+\let\journalit=\emph
+
+%%%%%%%% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Twierdzenie}[chapter]
+\newtheorem{lemma}[theorem]{Lemat}
+\newtheorem{proposition}[theorem]{Stwierdzenie}
+\newtheorem{corollary}[theorem]{Wniosek}
+\theoremstyle{definition}
+\newtheorem{definition}{Definicja}[chapter]
+\newtheorem{example}{Przykład}[chapter]
+\theoremstyle{remark}
+\newtheorem{remark}{Uwaga}[chapter]
+
+\newcommand{\krok}[2]{%
+  \par\noindent\textit{\textbf{Krok~#1.}\ #2.\ \ignorespaces}}
+\newcommand{\wlasnosc}[2]{%
+  \par\indent\textit{Własność~#1}.\ #2\par}
+%%%%%%%% List environments
+\newenvironment{alternatives}{%
+  \begin{enumerate}[nolistsep,label=\textup{(\roman*)}]%
+}{%
+  \end{enumerate}
+}
+\newenvironment{equivconditions}{%
+  \begin{enumerate}[label=\textup{(\arabic*)}]%
+}{%
+  \end{enumerate}
+}
+\newenvironment{simulconditions}{%
+  \begin{enumerate}[label={$\arabic*^\circ$}]%
+}{%
+  \end{enumerate}
+}
+\newenvironment{simulconditionsresume}{%
+  \begin{enumerate}[label={$\arabic*^\circ$},resume]%
+}{%
+  \end{enumerate}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Document body
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setlength{\abovedisplayskip}{3pt plus 3pt minus 1pt}
+\setlength{\belowdisplayskip}{3pt plus 3pt minus 1pt}
+% Z nieznanych mi przyczyn, te parametry są najwyraźniej resetowane przez
+% \begin{document}.
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Titlepage
+\input{./tekst/Tytulowa.tex}
+
+
+%%%%%% Podziękowania
+%\input{./tekst/Podziekowania.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Numeracja od początku
+\newpage
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% TOC
+\tableofcontents
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Wstęp
+\input{./tekst/Wstep.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Metody pomiarowe
+\input{./tekst/Pomiary.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Radiometria Mikrofalowa
+\input{./tekst/RadiometriaMikrofalowa.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Radiometria Mikrofalowa
+\input{./tekst/OpisSMOS.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Przetwarzanie danych SMOS. Poprzednio: "Analiza statystyczna danych SMOS"
+\input{./tekst/Przetwarzanie.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Zastosowanie wskaźników związanych z wilgotnością gleby i opisywanie powodzi
+\input{./tekst/Zastosowania.tex}
+
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Porównanie z innymi źródłami danych.
+\input{./tekst/PorownaniaZinnymiDanymi.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Wnioski
+\input{./tekst/Wnioski.tex}
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Bibliografia
+\bibliographystyle{plain}
+%aby były numerki, ustaw bibliographystyle plain
+%https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+\bibliography{bibliografia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% End
+%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
