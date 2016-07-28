@@ -2,13 +2,16 @@
 %%%%%%%%%%%%%%%%          Rozprawa doktorska
 %%%%%%%%%%%%%%%%
 
+
+%% JAK ZMIENIĆ PONOWNIE NA NUMERY W BIBLIOGRAFII: https://github.com/kedziorm/testowe/commit/8216e6df2bfadfc03de9ff358ffe25de0d569419
+%%%%%%%%%
 \documentclass[oneside,12pt]{mwbk}
 %\documentclass[oneside,12pt]{mwbk}
 
 %%%%%%%% Packages
 \usepackage{apalike}
 \let\bibhang\relax
-\usepackage{natbib}
+\usepackage[round]{natbib}
 %\let\bibsection\relax
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -29,6 +32,11 @@
 % to define non-breaking space (and omit error message)
 \DeclareUnicodeCharacter{00A0}{~}
 %
+
+%cytowanie otoczone nawiasem
+\renewcommand{\cite}{\citep}
+%Zmiana nawiasu z okrągłego na kwadratowy - Selecting citation style and punctuation
+\bibpunct{[}{]}{,}{a}{}{;}
 
 %%%%%%%% Math symbols
 %%%%%% Sets
