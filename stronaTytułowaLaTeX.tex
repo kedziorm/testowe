@@ -6,7 +6,10 @@
 %\documentclass[oneside,12pt]{mwbk}
 
 %%%%%%%% Packages
-
+\usepackage{apalike}
+\let\bibhang\relax
+\usepackage{natbib}
+%\let\bibsection\relax
 \usepackage{amsmath}
 \usepackage{amsthm}
 %\usepackage{amsfonts}
@@ -14,7 +17,8 @@
 \usepackage{polski}
 \usepackage[utf8]{inputenc}% nieszczęśni użytkownicy Windows powinni
                            % zmienić utf8 na cp1250
-\usepackage[nobysame,initials]{amsrefs}
+%\usepackage[nobysame,initials]{amsrefs}
+\usepackage[breaklinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{setspace}
 
@@ -301,7 +305,8 @@
 
 %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%% Bibliografia
-\bibliographystyle{plain}
+
+\bibliographystyle{papalike} %% spolonizywany style apalika.bst
 %aby były numerki, ustaw bibliographystyle plain
 %https://www.sharelatex.com/learn/Bibtex_bibliography_styles
 \bibliography{bibliografia}
