@@ -16,6 +16,25 @@ Some buzzwords:
    * For testers, by testers
    * Meet industry leaders (authors, bloggers, and personalities)
 
+---++!! First issue
+
+I want to sleep, so...
+
+%JQREQUIRE{"chili"}%
+<verbatim class="bash">
+
+#!/bin/bash
+# Instalacja: sudo apt-get install python-pip livestreamer vlc gnome-schedule
+
+link="https://www.youtube.com/watch?v=KlDMP2EajaM"
+nazwa="$(date +"%A_godz_%H_%M").mp4"
+echo Nagrywamy z konferencję używając następującego odnośnika $link i zapisując plik pod nazwą $nazwa >> ~/liveStreamLog.txt
+
+livestreamer $link 480p -o $nazwa >> ~/liveStreamLog.txt
+echo "***********" >> ~/liveStreamLog.txt
+</verbatim>
+
+
 ---++ [[http://sched.co/6xps][Keynote - Nicholas Carr]] 
 
    * bla bla
